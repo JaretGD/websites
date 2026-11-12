@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Rivera — Creative Developer & Designer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonCyan: '#00f2fe',
+                        neonPurple: '#4facfe',
+                        spaceDark: '#02040a',
+                        spaceCard: '#080c14',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Immersive Deep Galaxy Background */
+        body {
+            background: #02040a;
+            color: #e5e7eb;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        #galaxy-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ambient Galactic Nebulae Glow */
+        .nebula-cloud-1 {
+            position: fixed;
+            top: 5%;
+            left: 50%;
+            width: 1300px;
+            height: 1300px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(79, 172, 254, 0.06) 45%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(130px);
+            animation: drift-nebula 18s infinite alternate ease-in-out;
+        }
+
+        .nebula-cloud-2 {
+            position: fixed;
+            bottom: 0%;
+            left: 20%;
+            width: 1400px;
+            height: 1400px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.12) 0%, rgba(0, 242, 254, 0.06) 50%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(140px);
+            animation: drift-nebula-2 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift-nebula {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+            100% { transform: translate(-60px, 50px) scale(1.2); opacity: 1; }
+        }
+
+        @keyframes drift-nebula-2 {
+            0% { transform: translate(0, 0) scale(1.1); opacity: 0.65; }
+            100% { transform: translate(70px, -50px) scale(0.95); opacity: 0.95; }
+        }
+
+        .neon-glow-cyan {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+        }
+
+        .neon-glow-cyan-hover:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
+            border-color: #00f2fe;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative font-sans">
+
+    <!-- Deep Galaxy Canvas Background -->
+    <canvas id="galaxy-canvas"></canvas>
+
+    <!-- Multi-layered Nebula Clouds -->
+    <div class="nebula-cloud-1"></div>
+    <div class="nebula-cloud-2"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row min-h-screen">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-full md:w-80 bg-spaceCard/85 backdrop-blur-md border-r border-cyan-500/20 p-6 flex flex-col justify-between md:fixed md:h-screen z-20">
+            <div>
+                <!-- Vector Neon Avatar -->
+                <div class="text-center md:text-left">
+                    <div class="relative w-28 h-28 mx-auto md:mx-0 mb-4 rounded-full p-1 bg-gradient-to-tr from-neonCyan to-neonPurple neon-glow-cyan flex items-center justify-center bg-spaceDark">
+                        <div class="w-full h-full rounded-full bg-spaceDark flex items-center justify-center border border-cyan-500/30 overflow-hidden">
+                            <i class="fa-solid fa-atom text-4xl text-neonCyan animate-spin" style="animation-duration: 20s;"></i>
+                        </div>
+                    </div>
+                    <h1 class="text-xl font-bold text-white tracking-wide">Alex Rivera</h1>
+                    <p class="text-sm text-neonCyan font-mono mt-1">Creative Developer</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="mt-8 space-y-2">
+                    <a href="#about" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all text-gray-300 hover:text-neonCyan hover:bg-cyan-500/10">
+                        <i class="fa-solid fa-user w-5"></i> About Me
+                    </a>
+                    <a href="#projects" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all text-gray-300 hover:text-neonCyan hover:bg-cyan-500/10">
+                        <i class="fa-solid fa-code w-5"></i> Projects
+                    </a>
+                    <a href="#skills" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all text-gray-300 hover:text-neonCyan hover:bg-cyan-500/10">
+                        <i class="fa-solid fa-bolt w-5"></i> Skills
+                    </a>
+                    <a href="#contact" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all text-gray-300 hover:text-neonCyan hover:bg-cyan-500/10">
+                        <i class="fa-solid fa-envelope w-5"></i> Contact
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer / Socials -->
+            <div class="mt-8 pt-6 border-t border-cyan-500/10">
+                <div class="flex justify-center md:justify-start space-x-4 text-gray-400">
+                    <a href="#" class="hover:text-neonCyan transition-colors"><i class="fa-brands fa-github text-lg"></i></a>
+                    <a href="#" class="hover:text-neonCyan transition-colors"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                    <a href="#" class="hover:text-neonCyan transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
+                    <a href="#" class="hover:text-neonCyan transition-colors"><i class="fa-brands fa-discord text-lg"></i></a>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 text-center md:text-left">© 2026 Alex Rivera.</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 md:ml-80 p-6 md:p-12 space-y-16 max-w-5xl">
+            
+            <!-- Hero / About Section -->
+            <section id="about" class="space-y-6 pt-6">
+                <div class="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-neonCyan text-xs font-mono uppercase tracking-wider">
+                    Welcome to my universe
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+                    Building digital experiences <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-neonPurple text-glow">beyond the stars.</span>
+                </h2>
+                <p class="text-gray-300 text-lg leading-relaxed max-w-3xl">
+                    I'm a full-stack developer and UI/UX designer obsessed with crafting immersive web applications, clean code, and futuristic interfaces. When I'm not coding, you can find me exploring generative art, astronomy, and sci-fi worlds.
+                </p>
+                <div class="flex gap-4 pt-2">
+                    <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium neon-glow-cyan hover:opacity-90 transition-all">
+                        Explore Work
+                    </a>
+                    <a href="#contact" class="px-6 py-3 rounded-xl border border-cyan-500/40 text-neonCyan font-medium hover:bg-cyan-500/10 transition-all">
+                        Let's Talk
+                    </a>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="space-y-6">
+                <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="text-neonCyan font-mono">01.</span> Featured Projects
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Project 1 -->
+                    <div class="bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 neon-glow-cyan-hover transition-all duration-300 group">
+                        <div class="h-40 rounded-xl bg-gradient-to-br from-cyan-900/40 to-blue-900/40 mb-4 overflow-hidden flex items-center justify-center border border-cyan-500/10">
+                            <i class="fa-solid fa-satellite text-4xl text-neonCyan group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-neonCyan transition-colors">Nebula Dashboard</h4>
+                        <p class="text-gray-400 text-sm mt-2">A real-time telemetry analytics platform designed with dark-mode neon components and data graphs.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-neonCyan">React</span>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-neonCyan">Tailwind</span>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-neonCyan">Node.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 neon-glow-cyan-hover transition-all duration-300 group">
+                        <div class="h-40 rounded-xl bg-gradient-to-br from-purple-900/40 to-cyan-900/40 mb-4 overflow-hidden flex items-center justify-center border border-cyan-500/10">
+                            <i class="fa-solid fa-meteor text-4xl text-neonPurple group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-neonCyan transition-colors">Stellar UI Library</h4>
+                        <p class="text-gray-400 text-sm mt-2">An open-source component kit optimized for futuristic web applications and sci-fi styled dashboards.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-neonCyan">TypeScript</span>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-neonCyan">CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="space-y-6">
+                <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="text-neonCyan font-mono">02.</span> Tech Arsenal
+                </h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div class="p-4 rounded-xl bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 text-center hover:border-cyan-400 transition-colors">
+                        <i class="fa-brands fa-js text-3xl text-yellow-400 mb-2"></i>
+                        <p class="text-sm font-medium text-gray-200">JavaScript</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 text-center hover:border-cyan-400 transition-colors">
+                        <i class="fa-brands fa-react text-3xl text-neonCyan mb-2"></i>
+                        <p class="text-sm font-medium text-gray-200">React & Next.js</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 text-center hover:border-cyan-400 transition-colors">
+                        <i class="fa-brands fa-node text-3xl text-green-400 mb-2"></i>
+                        <p class="text-sm font-medium text-gray-200">Node.js</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 text-center hover:border-cyan-400 transition-colors">
+                        <i class="fa-solid fa-wind text-3xl text-cyan-400 mb-2"></i>
+                        <p class="text-sm font-medium text-gray-200">Tailwind CSS</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="space-y-6 pb-12">
+                <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="text-neonCyan font-mono">03.</span> Transmission
+                </h3>
+                <div class="bg-spaceCard/80 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 md:p-8">
+                    <p class="text-gray-300 mb-6">Have a project in mind or want to talk space exploration? Drop a message below.</p>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message transmitted successfully!');">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 rounded-xl bg-spaceDark/90 border border-cyan-500/20 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors">
+                            <input type="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-xl bg-spaceDark/90 border border-cyan-500/20 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors">
+                        </div>
+                        <textarea rows="4" placeholder="Your Message" required class="w-full px-4 py-3 rounded-xl bg-spaceDark/90 border border-cyan-500/20 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors"></textarea>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium neon-glow-cyan hover:opacity-90 transition-all">
+                            Send Transmission
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Ultra-Dense Elliptical Galaxy Engine with Smooth Gradient Fade -->
+    <script>
+        const canvas = document.getElementById('galaxy-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        let galaxyParticles = [];
+        let interArmHalo = [];
+        let cosmicDust = [];
+
+        function initResize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', initResize);
+        initResize();
+
+        // 1. Background Starfield
+        for (let i = 0; i < 500; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5,
+                baseAlpha: Math.random() * 0.7 + 0.1,
+                alphaSpeed: Math.random() * 0.01 + 0.002,
+                color: Math.random() > 0.3 ? '#ffffff' : (Math.random() > 0.5 ? '#00f2fe' : '#4facfe')
+            });
+        }
+
+        const maxDistance = 1100; // Wider radius for deeper falloff space
+
+        // Helper function for smooth cubic gradient fade (smoothstep)
+        function getSmoothFade(dist, maxDist) {
+            let normalized = Math.min(1.0, Math.max(0.0, dist / maxDist));
+            // Cubic smoothstep formula for a natural astrophotography fade gradient
+            let fade = 1.0 - (normalized * normalized * (3.0 - 2.0 * normalized));
+            return Math.max(0.0, fade);
+        }
+
+        // 2. 4 Main Spiral Arms (1,400 nodes per arm = 5,600 particles)
+        const numArms = 4;
+        const particlesPerArm = 1400;
+
+        for (let arm = 0; arm < numArms; arm++) {
+            const armAngleOffset = arm * (Math.PI / 2);
+            for (let i = 0; i < particlesPerArm; i++) {
+                const distance = Math.pow(Math.random(), 1.2) * maxDistance;
+                const angle = armAngleOffset + (distance * 0.0018) + (Math.random() * 0.45 - 0.22);
+                
+                let color;
+                if (distance < 150) color = '#ffffff';
+                else if (distance < 450) color = '#00f2fe';
+                else if (distance < 750) color = '#4facfe';
+                else color = Math.random() > 0.4 ? '#8a2be2' : '#4facfe';
+
+                let gradientAlpha = getSmoothFade(distance, maxDistance);
+
+                galaxyParticles.push({
+                    distance: distance,
+                    angle: angle,
+                    speed: (0.0003 + (1 / (distance + 60)) * 0.045),
+                    radius: Math.random() * 1.9 + (distance < 160 ? 1.3 : 0.35),
+                    color: color,
+                    baseAlpha: gradientAlpha * 0.85
+                });
+            }
+        }
+
+        // 3. Massive Inter-Arm Elliptical Halo (4,000 particles filling all gaps smoothly)
+        for (let i = 0; i < 4000; i++) {
+            const distance = Math.random() * maxDistance;
+            const angle = Math.random() * Math.PI * 2;
+            
+            let color = Math.random() > 0.5 ? '#00f2fe' : '#4facfe';
+            if (distance < 240) color = '#ffffff';
+
+            let gradientAlpha = getSmoothFade(distance, maxDistance);
+
+            interArmHalo.push({
+                distance: distance,
+                angle: angle,
+                speed: (0.00028 + (1 / (distance + 70)) * 0.04),
+                radius: Math.random() * 1.3 + 0.3,
+                color: color,
+                baseAlpha: gradientAlpha * 0.45
+            });
+        }
+
+        // 4. Volumetric Nebula Gas Clouds with smooth gradient fading
+        for (let i = 0; i < 180; i++) {
+            const distance = Math.random() * 950;
+            let gradientAlpha = getSmoothFade(distance, maxDistance);
+
+            cosmicDust.push({
+                distance: distance,
+                angle: Math.random() * Math.PI * 2,
+                radius: Math.random() * 90 + 45,
+                speed: 0.0004,
+                alpha: gradientAlpha * 0.05
+            });
+        }
+
+        let globalRotation = 0;
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            const galaxyCenter = {
+                x: width > 768 ? width * 0.65 : width * 0.5,
+                y: height > 768 ? height * 0.4 : height * 0.25
+            };
+
+            globalRotation += 0.0005;
+
+            ctx.save();
+            ctx.translate(galaxyCenter.x, galaxyCenter.y);
+            ctx.rotate(0.28); // 3D disc inclination tilt
+
+            // Balanced Core Glow with smooth outer gradient fade
+            const coreGlow1 = ctx.createRadialGradient(0, 0, 0, 0, 0, 380);
+            coreGlow1.addColorStop(0, 'rgba(0, 242, 254, 0.32)');
+            coreGlow1.addColorStop(0.35, 'rgba(79, 172, 254, 0.12)');
+            coreGlow1.addColorStop(1, 'transparent');
+            ctx.fillStyle = coreGlow1;
+            ctx.beginPath();
+            ctx.arc(0, 0, 380, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Inner Core Bulge
+            const coreGlow2 = ctx.createRadialGradient(0, 0, 0, 0, 0, 100);
+            coreGlow2.addColorStop(0, 'rgba(255, 255, 255, 0.88)');
+            coreGlow2.addColorStop(0.5, 'rgba(0, 242, 254, 0.42)');
+            coreGlow2.addColorStop(1, 'transparent');
+            ctx.fillStyle = coreGlow2;
+            ctx.beginPath();
+            ctx.arc(0, 0, 100, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Render Volumetric Cosmic Gas & Dust Clouds
+            cosmicDust.forEach(dust => {
+                const currentAngle = dust.angle + globalRotation * 0.7;
+                const x = Math.cos(currentAngle) * dust.distance;
+                const y = Math.sin(currentAngle) * dust.distance * 0.5;
+
+                const dustGrad = ctx.createRadialGradient(x, y, 0, x, y, dust.radius);
+                dustGrad.addColorStop(0, `rgba(0, 242, 254, ${dust.alpha})`);
+                dustGrad.addColorStop(0.6, `rgba(138, 43, 226, ${dust.alpha * 0.5})`);
+                dustGrad.addColorStop(1, 'transparent');
+
+                ctx.fillStyle = dustGrad;
+                ctx.beginPath();
+                ctx.arc(x, y, dust.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Render Inter-Arm Halo (Smooth Elliptical Body)
+            interArmHalo.forEach(p => {
+                const currentAngle = p.angle + globalRotation * (1 + 150 / (p.distance + 50));
+                const x = Math.cos(currentAngle) * p.distance;
+                const y = Math.sin(currentAngle) * p.distance * 0.48;
+
+                ctx.beginPath();
+                ctx.arc(x, y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.baseAlpha;
+                ctx.shadowBlur = 3;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+            });
+
+            // Render Spiral Arms on top
+            galaxyParticles.forEach(p => {
+                const currentAngle = p.angle + globalRotation * (1 + 150 / (p.distance + 50));
+                const x = Math.cos(currentAngle) * p.distance;
+                const y = Math.sin(currentAngle) * p.distance * 0.48;
+
+                ctx.beginPath();
+                ctx.arc(x, y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.baseAlpha;
+                ctx.shadowBlur = p.color !== '#8a2be2' ? 7 : 1;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+            });
+
+            ctx.restore();
+
+            // Draw Background Starfield
+            stars.forEach(star => {
+                star.baseAlpha += star.alphaSpeed;
+                if (star.baseAlpha > 0.9 || star.baseAlpha < 0.15) {
+                    star.alphaSpeed = -star.alphaSpeed;
+                }
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = star.color;
+                ctx.globalAlpha = Math.abs(star.baseAlpha);
+                ctx.shadowBlur = star.color !== '#ffffff' ? 4 : 0;
+                ctx.shadowColor = star.color;
+                ctx.fill();
+            });
+
+            ctx.globalAlpha = 1.0;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
